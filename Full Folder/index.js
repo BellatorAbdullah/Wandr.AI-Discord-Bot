@@ -169,6 +169,17 @@ client.once('ready', () => {
   console.log(`Wandr Bot is online as ${client.user.tag}`);
 });
 
+// keep all your other code in between...
+
+// ─── Health check server for Render ──────────────────────────────────────────
+const express = require('express');
+const server = express();
+server.get('/', (req, res) => res.send('Wandr Bot is running!'));
+server.listen(3000, () => console.log('Health check server on port 3000'));
+
+// ─── Login ────────────────────────────────────────────────────────────────────
+client.login(process.env.DISCORD_TOKEN);
+
 // ─── Interaction handler ──────────────────────────────────────────────────────
 client.on('interactionCreate', async (interaction) => {
   const userId = interaction.user.id;
